@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Kakao Navi SDK with UI</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="kakao-navi-sdk-with-ui">Kakao Navi SDK with UI</h1>
+<blockquote>
+<p>KNNaviView</p>
+</blockquote>
+<ul>
+<li>NaviView에 관해서 작성합니다.</li>
+</ul>
+<hr>
+<blockquote>
+<p>initWithGuidance</p>
+</blockquote>
+<pre><code class="language-kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">initWithGuidance</span><span class="hljs-params">(aGuidance: <span class="hljs-type">com</span>.<span class="hljs-type">kakaomobility</span>.<span class="hljs-type">knsdk</span>.<span class="hljs-type">guidance</span>.<span class="hljs-type">knguidance</span>.<span class="hljs-type">KNGuidance</span>, aTrip: <span class="hljs-type">com</span>.<span class="hljs-type">kakaomobility</span>.<span class="hljs-type">knsdk</span>.<span class="hljs-type">trip</span>.<span class="hljs-type">kntrip</span>.<span class="hljs-type">KNTrip</span>?, aRoutePriority: <span class="hljs-type">com</span>.<span class="hljs-type">kakaomobility</span>.<span class="hljs-type">knsdk</span>.<span class="hljs-type">KNRoutePriority</span>, aAvoidOptions: <span class="hljs-type">kotlin</span>.<span class="hljs-type">Int</span>)</span></span>: kotlin.<span class="hljs-built_in">Unit</span>
+</code></pre>
+<pre><code class="language-kotlin">_naviView.initWithGuidance(_guidance, _trip, KNRoutePriority.KNRoutePriority_Recommand, KNRouteAvoidOption.KNRouteAvoidOption_None.value)
+</code></pre>
+<ul>
+<li>initWithGuidance는 guidance를 생성합니다.</li>
+<li>guidance를 사용하기 위해서는 initWithGuidance를 선언해주서야 합니다.</li>
+<li>init된 guidance는 _guidance에 들어갑니다.</li>
+<li>_trip이 <strong>null</strong>일 경우, 안전운행 모드로 실행됩니다.</li>
+<li>initWithGuidance와 _guidance.startWithTrip을 같이 사용하면 가이드 안내음이 두번 출력됩니다.</li>
+</ul>
+<hr>
+<blockquote>
+<p>changeDisplayType</p>
+</blockquote>
+<pre><code class="language-kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">changeDisplayType</span><span class="hljs-params">(displayType: <span class="hljs-type">com</span>.<span class="hljs-type">kakaomobility</span>.<span class="hljs-type">knsdk</span>.<span class="hljs-type">KNDisplayType</span>)</span></span>: kotlin.<span class="hljs-built_in">Unit</span>
+</code></pre>
+<pre><code class="language-kotlin">_naviView.changeDisplayType(KNDisplayType.KNDisplayType_DRIVE)
+_naviView.changeDisplayType(KNDisplayType.KNDisplayType_SEARCH)
+</code></pre>
+<ul>
+<li>지도의 이미지(색상)에 변경이 있어보입니다.</li>
+<li>KNDisplayType.KNDisplayType_DRIVE
+<img src="file:////Users/ryugihyun/KakaoNaviUISDK/raw/images/2023-02-06-18-04-41.png" alt=""></li>
+<li>KNDisplayType.KNDisplayType_SEARCH
+<img src="file:////images/2023-02-06-18-06-53.png" alt=""></li>
+</ul>
+<hr>
+<blockquote>
+<p>mapViewWillMoveToMap</p>
+</blockquote>
+<pre><code class="language-kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">open</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">mapViewWillMoveToMap</span><span class="hljs-params">()</span></span>: kotlin.<span class="hljs-built_in">Unit</span>
+</code></pre>
+<pre><code class="language-kotlin">_naviView.mapViewWillMoveToMap()
+</code></pre>
+<ul>
+<li>가이드 중 화면을 움직였을때 모습을 보여줍니다.(경로안내/안전운행)
+<img src="file:////Users/ryugihyun/KakaoNaviUISDK/raw/Images/2023-02-06-18-12-55.png" alt="">
+<img src="file:////Users/ryugihyun/KakaoNaviUISDK/raw/Images/2023-02-06-18-13-05.png" alt=""></li>
+</ul>
+<hr>
+<blockquote>
+<p>mapViewDidSingleTap</p>
+</blockquote>
+<pre><code class="language-kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">open</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">mapViewDidSingleTap</span><span class="hljs-params">()</span></span>: kotlin.<span class="hljs-built_in">Unit</span>
+</code></pre>
+<pre><code class="language-kotlin">_naviView.mapViewDidSingleTap()
+</code></pre>
+<ul>
+<li>화면을 한번 터치했을때 모습을 보여줍니다.</li>
+<li>가이드 중 에만 동작하며 하단 메뉴바 터치와 같은 기능을 합니다.(경로안내)
+<img src="file:////Users/ryugihyun/KakaoNaviUISDK/raw/Images/2023-02-06-18-26-23.png" alt=""></li>
+</ul>
+<hr>
+<blockquote>
+<p>mapViewDidDoubleTap</p>
+</blockquote>
+<pre><code class="language-kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">open</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">mapViewDidDoubleTap</span><span class="hljs-params">()</span></span>: kotlin.<span class="hljs-built_in">Unit</span>
+</code></pre>
+<pre><code class="language-kotlin">_naviView.mapViewDidDoubleTap()
+</code></pre>
+<ul>
+<li>화면을 빠르게 두번 터치했을때 모습을 보여줍니다.</li>
+<li>가이드 중 에만 동작하며 '전체 경로보기' 기능을 합니다.(경로안내)
+<img src="file:////Users/ryugihyun/KakaoNaviUISDK/raw/Images/2023-02-06-18-28-05.png" alt=""></li>
+</ul>
+<hr>
+<blockquote>
+<p>mapViewPanningStarted</p>
+</blockquote>
+<pre><code class="language-kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">open</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">mapViewPanningStarted</span><span class="hljs-params">()</span></span>: kotlin.<span class="hljs-built_in">Unit</span>
+</code></pre>
+<pre><code class="language-kotlin">_naviView.mapViewPanningStarted()
+</code></pre>
+<ul>
+<li>//TODO 기능확인 필요</li>
+</ul>
+<hr>
+<blockquote>
+<p>mapViewZoomingStarted</p>
+</blockquote>
+<pre><code class="language-kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">open</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">mapViewZoomingStarted</span><span class="hljs-params">()</span></span>: kotlin.<span class="hljs-built_in">Unit</span>
+</code></pre>
+<pre><code class="language-kotlin">_naviView.mapViewZoomingStarted()
+</code></pre>
+<ul>
+<li>//TODO 기능확인 필요</li>
+</ul>
+<hr>
+<blockquote>
+<p>mapViewChangeRoute</p>
+</blockquote>
+<pre><code class="language-kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">open</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">mapViewChangeRoute</span><span class="hljs-params">(aRoute: <span class="hljs-type">com</span>.<span class="hljs-type">kakaomobility</span>.<span class="hljs-type">knsdk</span>.<span class="hljs-type">trip</span>.<span class="hljs-type">kntrip</span>.<span class="hljs-type">knroute</span>.<span class="hljs-type">KNRoute</span>?)</span></span>: kotlin.<span class="hljs-built_in">Unit</span>
+</code></pre>
+<pre><code class="language-kotlin">_naviView.mapViewChangeRoute(_route)
+</code></pre>
+<ul>
+<li>설정된 _route로 경로를 표기해줍니다.</li>
+<li>경로가 표기되기 위해서는 가이드에 대안경로가 있어야 됩니다. 대안경로가 없다면 동작하지 않습니다.</li>
+<li>대안경로가 있다는 가정하에 호출하면 대안경로와 기존경로를 번갈아가며 노출합니다.
+<img src="file:////Users/ryugihyun/KakaoNaviUISDK/raw/Images/2023-02-07-10-56-02.png" alt="">
+<img src="file:////Users/ryugihyun/KakaoNaviUISDK/raw/Images/2023-02-07-10-56-10.png" alt=""></li>
+</ul>
+<hr>
+<blockquote>
+<p>mapViewViaPointTouched</p>
+</blockquote>
+<pre><code class="language-kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">open</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">mapViewViaPointTouched</span><span class="hljs-params">(aPoi: <span class="hljs-type">com</span>.<span class="hljs-type">kakaomobility</span>.<span class="hljs-type">knsdk</span>.<span class="hljs-type">common</span>.<span class="hljs-type">objects</span>.<span class="hljs-type">KNPOI</span>)</span></span>: kotlin.<span class="hljs-built_in">Unit</span>
+</code></pre>
+<pre><code class="language-kotlin">_naviView.mapViewViaPointTouched(_goal!!)
+</code></pre>
+<ul>
+<li>특정 POI에 대한 패널이 노출이 됩니다.</li>
+<li>다만 해당기능이 다른 작업을 하는 것은 확인하지 못했습니다.
+<img src="file:////Users/ryugihyun/KakaoNaviUISDK/raw/Images/2023-02-07-10-58-42.png" alt=""></li>
+</ul>
+<hr>
+<blockquote>
+<p>mapViewYugoPointTouched</p>
+</blockquote>
+<pre><code class="language-kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">open</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">mapViewYugoPointTouched</span><span class="hljs-params">(aRoadEvent: <span class="hljs-type">com</span>.<span class="hljs-type">kakaomobility</span>.<span class="hljs-type">knsdk</span>.<span class="hljs-type">guidance</span>.<span class="hljs-type">knguidance</span>.<span class="hljs-type">routeguide</span>.<span class="hljs-type">objects</span>.<span class="hljs-type">KNRoadEvent</span>)</span></span>: kotlin.<span class="hljs-built_in">Unit</span>
+</code></pre>
+<pre><code class="language-kotlin">
+</code></pre>
+<ul>
+<li>//TODO 기능확인필요. 아마 도로사고 및 공사 관련 정보를 넣을 수 있을 것 같습니다.</li>
+</ul>
+<hr>
+<blockquote>
+<p>mapViewAroundPoiTouched</p>
+</blockquote>
+<pre><code class="language-kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">open</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">mapViewAroundPoiTouched</span><span class="hljs-params">(aCoord: <span class="hljs-type">com</span>.<span class="hljs-type">kakaomobility</span>.<span class="hljs-type">knsdk</span>.<span class="hljs-type">common</span>.<span class="hljs-type">util</span>.<span class="hljs-type">IntPoint</span>, aPoiAroundDataList: <span class="hljs-type">kotlin</span>.<span class="hljs-type">collections</span>.<span class="hljs-type">List</span>&lt;<span class="hljs-type">com</span>.<span class="hljs-type">kakaomobility</span>.<span class="hljs-type">knsdk</span>.<span class="hljs-type">api</span>.<span class="hljs-type">objects</span>.<span class="hljs-type">KNPoiAroundData</span>&gt;, aCode: <span class="hljs-type">com</span>.<span class="hljs-type">kakaomobility</span>.<span class="hljs-type">knsdk</span>.<span class="hljs-type">ui</span>.<span class="hljs-type">manager</span>.<span class="hljs-type">KNCategoryPoiCode</span>)</span></span>: kotlin.<span class="hljs-built_in">Unit</span>
+</code></pre>
+<pre><code class="language-kotlin">
+</code></pre>
+<ul>
+<li>//TODO 기능확인필요. 아마 특정 지점 인근의 정보 목록을 노출 할 것 같습니다.</li>
+</ul>
+<hr>
+<blockquote>
+<p>mapAroundPinListViewAroundPoiTouched</p>
+</blockquote>
+<pre><code class="language-kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">open</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">mapAroundPinListViewAroundPoiTouched</span><span class="hljs-params">(aPoiAroundData: <span class="hljs-type">com</span>.<span class="hljs-type">kakaomobility</span>.<span class="hljs-type">knsdk</span>.<span class="hljs-type">api</span>.<span class="hljs-type">objects</span>.<span class="hljs-type">KNPoiAroundData</span>, aCode: <span class="hljs-type">com</span>.<span class="hljs-type">kakaomobility</span>.<span class="hljs-type">knsdk</span>.<span class="hljs-type">ui</span>.<span class="hljs-type">manager</span>.<span class="hljs-type">KNCategoryPoiCode</span>)</span></span>: kotlin.<span class="hljs-built_in">Unit</span>
+</code></pre>
+<pre><code class="language-kotlin">
+</code></pre>
+<ul>
+<li>//TODO 기능확인필요. 아마 특정 지점 인근의 정보 목록을 노출 할 것 같습니다.</li>
+</ul>
+<hr>
+<blockquote>
+<p>highwayModeBgViewReqChangeViewMode</p>
+</blockquote>
+<pre><code class="language-kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">open</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">highwayModeBgViewReqChangeViewMode</span><span class="hljs-params">(aViewState: <span class="hljs-type">com</span>.<span class="hljs-type">kakaomobility</span>.<span class="hljs-type">knsdk</span>.<span class="hljs-type">ui</span>.<span class="hljs-type">view</span>.<span class="hljs-type">KNNaviViewState</span>)</span></span>: kotlin.<span class="hljs-built_in">Unit</span>
+</code></pre>
+<pre><code class="language-kotlin">_naviView.highwayModeBgViewReqChangeViewMode(KNNaviViewState.NONE)
+_naviView.highwayModeBgViewReqChangeViewMode(KNNaviViewState.DriveNormal)
+_naviView.highwayModeBgViewReqChangeViewMode(KNNaviViewState.DriveTouch)
+_naviView.highwayModeBgViewReqChangeViewMode(KNNaviViewState.DriveFullRoute)
+_naviView.highwayModeBgViewReqChangeViewMode(KNNaviViewState.DriveSection)
+_naviView.highwayModeBgViewReqChangeViewMode(KNNaviViewState.DriveHighwayMode)
+_naviView.highwayModeBgViewReqChangeViewMode(KNNaviViewState.SafetyNormal)
+_naviView.highwayModeBgViewReqChangeViewMode(KNNaviViewState.SafetyTouch)
+</code></pre>
+<ul>
+<li>MapView의 배경을 KNNaviViewState에 따라 새로 그려줍니다. 루트경로는 새로 그려주지 않습니다.</li>
+<li>KNNaviViewState.NONE (표기없음)
+<img src="file:////Users/ryugihyun/KakaoNaviUISDK/raw/Images/2023-02-07-12-13-23.png" alt="">
+<img src="file:////Users/ryugihyun/KakaoNaviUISDK/raw/Images/2023-02-07-12-13-34.png" alt=""></li>
+<li>KNNaviViewState.DriveNormal (경로주행)
+<img src="file:////Users/ryugihyun/KakaoNaviUISDK/raw/Images/2023-02-07-12-15-03.png" alt="">
+<img src="file:////Users/ryugihyun/KakaoNaviUISDK/raw/Images/2023-02-07-12-15-10.png" alt=""></li>
+<li>KNNaviViewState.DriveTouch (경로주행 중 터치)
+<img src="file:////Users/ryugihyun/KakaoNaviUISDK/raw/Images/2023-02-07-13-48-25.png" alt="">
+<img src="file:////Users/ryugihyun/KakaoNaviUISDK/raw/Images/2023-02-07-13-48-33.png" alt=""></li>
+<li>KNNaviViewState.DriveFullRoute (전체경로)
+<img src="file:////Users/ryugihyun/KakaoNaviUISDK/raw/Images/2023-02-07-13-49-07.png" alt=""></li>
+<li>KNNaviViewState.DriveSection (경로목록)
+<img src="file:////Users/ryugihyun/KakaoNaviUISDK/raw/Images/2023-02-07-14-17-02.png" alt=""></li>
+<li>KNNaviViewState.DriveHighwayMode (고속도로주행?)
+<img src="file:////Users/ryugihyun/KakaoNaviUISDK/raw/Images/2023-02-07-14-18-03.png" alt=""></li>
+<li>KNNaviViewState.SafetyNormal (안전운행)
+<img src="file:////Users/ryugihyun/KakaoNaviUISDK/raw/Images/2023-02-07-14-18-40.png" alt=""></li>
+<li>KNNaviViewState.SafetyTouch (안전운행 중 터치)
+<img src="file:////Users/ryugihyun/KakaoNaviUISDK/raw/Images/2023-02-07-14-18-53.png" alt=""></li>
+</ul>
+<hr>
+<blockquote>
+<p>KNComponentRouteInfoViewChangedRoute</p>
+</blockquote>
+<pre><code class="language-kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">open</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">KNComponentRouteInfoViewChangedRoute</span><span class="hljs-params">(aChanged: <span class="hljs-type">kotlin</span>.<span class="hljs-type">Boolean</span>)</span></span>: kotlin.<span class="hljs-built_in">Unit</span>
+</code></pre>
+<pre><code class="language-kotlin">_naviView.KNComponentRouteInfoViewChangedRoute(<span class="hljs-literal">false</span>)
+_naviView.KNComponentRouteInfoViewChangedRoute(<span class="hljs-literal">true</span>)
+</code></pre>
+<ul>
+<li>대안 경로가 있을때만 동작. 없으면 Error. false면 기존경로 true면 대안경로를 선택합니다.</li>
+<li>경로표기와 상단 안내는 바꾸어주지만 실제 가이드 안내 내용변화는 없습니다.
+<img src="file:////Users/ryugihyun/KakaoNaviUISDK/raw/Images/2023-02-07-15-32-06.png" alt="">
+<img src="file:////Users/ryugihyun/KakaoNaviUISDK/raw/Images/2023-02-07-15-32-12.png" alt=""></li>
+</ul>
+<hr>
+<blockquote>
+<p>KNComponentRouteInfoViewRouteSelect</p>
+</blockquote>
+<pre><code class="language-kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">open</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">KNComponentRouteInfoViewRouteSelect</span><span class="hljs-params">(routeList: <span class="hljs-type">kotlin</span>.<span class="hljs-type">collections</span>.<span class="hljs-type">List</span>&lt;<span class="hljs-type">com</span>.<span class="hljs-type">kakaomobility</span>.<span class="hljs-type">knsdk</span>.<span class="hljs-type">trip</span>.<span class="hljs-type">kntrip</span>.<span class="hljs-type">knroute</span>.<span class="hljs-type">KNRoute</span>&gt;, fixScale: <span class="hljs-type">kotlin</span>.<span class="hljs-type">Boolean</span>)</span></span>: kotlin.<span class="hljs-built_in">Unit</span>
+</code></pre>
+<pre><code class="language-kotlin">_naviView.KNComponentRouteInfoViewRouteSelect(_routeList!!, <span class="hljs-literal">true</span>)
+</code></pre>
+<ul>
+<li><strong>NaviView.initWithGuidance</strong> 설정된 경로와 <strong>Trip.routeWithPriority</strong> 로 설정된 경로가 다르다는 걸 보여주는 항목입니다.</li>
+<li>KNComponentRouteInfoViewRouteSelect는 Trip.routeWithPriority으로 생성된 routeList 사용합니다.</li>
+<li>Boolean값이 <strong>true</strong>면 축소된 화면에서, <strong>false</strong>면 경로 전체가 표현된 화면에서 경로를 보여줍니다.
+<img src="file:////Users/ryugihyun/KakaoNaviUISDK/raw/Images/2023-02-07-15-53-52.png" alt=""></li>
+</ul>
+<hr>
+<blockquote>
+<p>KNComponentRouteInfoViewRefresh</p>
+</blockquote>
+<pre><code class="language-kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">open</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">KNComponentRouteInfoViewRefresh</span><span class="hljs-params">()</span></span>: kotlin.<span class="hljs-built_in">Unit</span>
+</code></pre>
+<pre><code class="language-kotlin">_naviView.KNComponentRouteInfoViewRefresh()
+</code></pre>
+<ul>
+<li>경로 새로고쳐서 보여줍니다. 사용자의 위치를 기기 가운데로 강제로 설정하는 것 같습니다.</li>
+</ul>
+<hr>
+<blockquote>
+<p>KNComponentRouteInfoViewShowSectionInfo</p>
+</blockquote>
+<pre><code class="language-kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">open</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">KNComponentRouteInfoViewShowSectionInfo</span><span class="hljs-params">(routeList: <span class="hljs-type">kotlin</span>.<span class="hljs-type">collections</span>.<span class="hljs-type">List</span>&lt;<span class="hljs-type">com</span>.<span class="hljs-type">kakaomobility</span>.<span class="hljs-type">knsdk</span>.<span class="hljs-type">trip</span>.<span class="hljs-type">kntrip</span>.<span class="hljs-type">knroute</span>.<span class="hljs-type">KNRoute</span>&gt;)</span></span>: kotlin.<span class="hljs-built_in">Unit</span>
+</code></pre>
+<pre><code class="language-kotlin">_naviView.KNComponentRouteInfoViewShowSectionInfo(_routeList!!)
+</code></pre>
+<ul>
+<li>경로(route)의 상세 목차를 보여줍니다.
+<img src="file:////Users/ryugihyun/KakaoNaviUISDK/raw/Images/2023-02-07-15-54-06.png" alt=""></li>
+</ul>
+<hr>
+<blockquote>
+<p>KNComponentRouteInfoViewTrafficMode</p>
+</blockquote>
+<pre><code class="language-kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">open</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">KNComponentRouteInfoViewTrafficMode</span><span class="hljs-params">(routeList: <span class="hljs-type">kotlin</span>.<span class="hljs-type">collections</span>.<span class="hljs-type">List</span>&lt;<span class="hljs-type">com</span>.<span class="hljs-type">kakaomobility</span>.<span class="hljs-type">knsdk</span>.<span class="hljs-type">trip</span>.<span class="hljs-type">kntrip</span>.<span class="hljs-type">knroute</span>.<span class="hljs-type">KNRoute</span>&gt;?)</span></span>: kotlin.<span class="hljs-built_in">Unit</span>
+</code></pre>
+<pre><code class="language-kotlin">_naviView.KNComponentRouteInfoViewTrafficMode(_routeList!!)
+</code></pre>
+<ul>
+<li>//TODO 바뀐점 모르겠음</li>
+</ul>
+<hr>
+<blockquote>
+<p>KNComponentRouteInfoViewClosePopup</p>
+</blockquote>
+<pre><code class="language-kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">open</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">KNComponentRouteInfoViewClosePopup</span><span class="hljs-params">()</span></span>: kotlin.<span class="hljs-built_in">Unit</span>
+</code></pre>
+<pre><code class="language-kotlin">_naviView.KNComponentRouteInfoViewClosePopup()
+</code></pre>
+<ul>
+<li>//TODO 바뀐점 모르겠음</li>
+</ul>
+<hr>
+<blockquote>
+<p>KNComponentSectionInfoViewSectionSelect</p>
+</blockquote>
+<pre><code class="language-kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">open</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">KNComponentSectionInfoViewSectionSelect</span><span class="hljs-params">(aPoint: <span class="hljs-type">com</span>.<span class="hljs-type">kakaomobility</span>.<span class="hljs-type">knsdk</span>.<span class="hljs-type">common</span>.<span class="hljs-type">util</span>.<span class="hljs-type">FloatPoint</span>)</span></span>: kotlin.<span class="hljs-built_in">Unit</span>
+</code></pre>
+<pre><code class="language-kotlin">_naviView.KNComponentSectionInfoViewSectionSelect(FloatPoint(_start!!.pos.x.toFloat(),_start!!.pos.y.toFloat()))
+</code></pre>
+<ul>
+<li>하단 전체경로를 통해서 전체 경로를 확인해야 제대로 작동하는 것을 확인.</li>
+<li>전체경로에서 특정지점을 중심으로 경로를 표시해줍니다.</li>
+</ul>
+<hr>
+<blockquote>
+<p>KNComponentSectionInfoViewRouteSelect</p>
+</blockquote>
+<pre><code class="language-kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">open</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">KNComponentSectionInfoViewRouteSelect</span><span class="hljs-params">(aRoute: <span class="hljs-type">com</span>.<span class="hljs-type">kakaomobility</span>.<span class="hljs-type">knsdk</span>.<span class="hljs-type">trip</span>.<span class="hljs-type">kntrip</span>.<span class="hljs-type">knroute</span>.<span class="hljs-type">KNRoute</span>)</span></span>: kotlin.<span class="hljs-built_in">Unit</span>
+</code></pre>
+<pre><code class="language-kotlin">_naviView.KNComponentSectionInfoViewRouteSelect(_route!!)
+</code></pre>
+<ul>
+<li>하단 전체경로를 통해서 전체 경로를 확인해야 제대로 작동하는 것을 확인.</li>
+<li>전체경로에서 선택한 경로를 표시해줍니다.</li>
+</ul>
+<hr>
+<blockquote>
+<p>KNComponentSectionInfoViewClose</p>
+</blockquote>
+<pre><code class="language-kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">open</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">KNComponentSectionInfoViewClose</span><span class="hljs-params">()</span></span>: kotlin.<span class="hljs-built_in">Unit</span>
+</code></pre>
+<pre><code class="language-kotlin">_naviView.KNComponentSectionInfoViewClose()
+</code></pre>
+<ul>
+<li>하단 전체경로를 통해서 전체 경로를 확인해야 제대로 작동하는 것을 확인.</li>
+<li>가이드를 닫고 전체경로를 보여줍니다.</li>
+</ul>
+<hr>
+<blockquote>
+<p>KNComponentSectionInfoViewRefresh</p>
+</blockquote>
+<pre><code class="language-kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">open</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">KNComponentSectionInfoViewRefresh</span><span class="hljs-params">()</span></span>: kotlin.<span class="hljs-built_in">Unit</span>
+</code></pre>
+<pre><code class="language-kotlin">_naviView.KNComponentSectionInfoViewRefresh()
+</code></pre>
+<ul>
+<li>하단 전체경로를 통해서 전체 경로를 확인해야 제대로 작동하는 것을 확인.</li>
+<li>//TODO : 새로고침인것 같은데 잘모르겠음</li>
+</ul>
+<hr>
+<blockquote>
+<p>highwayModeViewReqChangeViewMode</p>
+</blockquote>
+<pre><code class="language-kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">open</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">highwayModeViewReqChangeViewMode</span><span class="hljs-params">(aViewState: <span class="hljs-type">com</span>.<span class="hljs-type">kakaomobility</span>.<span class="hljs-type">knsdk</span>.<span class="hljs-type">ui</span>.<span class="hljs-type">view</span>.<span class="hljs-type">KNNaviViewState</span>)</span></span>: kotlin.<span class="hljs-built_in">Unit</span>
+</code></pre>
+<pre><code class="language-kotlin">_naviView.highwayModeViewReqChangeViewMode(KNNaviViewState.NONE)
+</code></pre>
+<ul>
+<li>highwayModeBgViewReqChangeViewMode와 차이점을 모르겠습니다.</li>
+</ul>
+<hr>
+<blockquote>
+<p>zoomViewWillZoomIn</p>
+</blockquote>
+<pre><code class="language-kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">open</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">zoomViewWillZoomIn</span><span class="hljs-params">()</span></span>: kotlin.<span class="hljs-built_in">Unit</span>
+</code></pre>
+<pre><code class="language-kotlin">_naviView.zoomViewWillZoomIn()
+</code></pre>
+<ul>
+<li>NaviView 줌인 기능입니다. 클릭상태가 아니라면 금방 상태가 풀립니다. (mapViewWillMoveToMap 과 같이 사용해야 할 듯)</li>
+</ul>
+<hr>
+<blockquote>
+<p>zoomViewWillZoomOut</p>
+</blockquote>
+<pre><code class="language-kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">open</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">zoomViewWillZoomOut</span><span class="hljs-params">()</span></span>: kotlin.<span class="hljs-built_in">Unit</span>
+</code></pre>
+<pre><code class="language-kotlin">_naviView.zoomViewWillZoomOut()
+</code></pre>
+<ul>
+<li>NaviView 줌아웃 기능입니다. 클릭상태가 아니라면 금방 상태가 풀립니다. (mapViewWillMoveToMap 과 같이 사용해야 할 듯)</li>
+</ul>
+<hr>
+<blockquote>
+<p>popupInfoViewWillRemoveVia</p>
+</blockquote>
+<pre><code class="language-kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">open</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">popupInfoViewWillAddVia</span><span class="hljs-params">(aVia: <span class="hljs-type">kotlin</span>.<span class="hljs-type">Any</span>, popupStyle: <span class="hljs-type">kotlin</span>.<span class="hljs-type">Int</span>)</span></span>: kotlin.<span class="hljs-built_in">Unit</span>
+</code></pre>
+<pre><code class="language-kotlin">_naviView.popupInfoViewWillRemoveVia(_start!!)
+</code></pre>
+<ul>
+<li>특정 POI를 지우고 표현하는 것같은데 잘모르겠음. 바로 가이드 화면으로 표현해줌.</li>
+</ul>
+<hr>
+<blockquote>
+<p>popupInfoViewWillAddVia</p>
+</blockquote>
+<pre><code class="language-kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">open</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">popupInfoViewWillAddVia</span><span class="hljs-params">(aVia: <span class="hljs-type">kotlin</span>.<span class="hljs-type">Any</span>, popupStyle: <span class="hljs-type">kotlin</span>.<span class="hljs-type">Int</span>)</span></span>: kotlin.<span class="hljs-built_in">Unit</span>
+</code></pre>
+<pre><code class="language-kotlin">_naviView.popupInfoViewWillAddVia(_start!!,<span class="hljs-number">1</span>)
+</code></pre>
+<ul>
+<li>특정 POI를 추가하고 표현하는 것같은데 잘모르겠음.</li>
+</ul>
+<hr>
+<blockquote>
+<p>popupInfoViewWillGoToGoal</p>
+</blockquote>
+<pre><code class="language-kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">open</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">popupInfoViewWillGoToGoal</span><span class="hljs-params">(aGoal: <span class="hljs-type">com</span>.<span class="hljs-type">kakaomobility</span>.<span class="hljs-type">knsdk</span>.<span class="hljs-type">common</span>.<span class="hljs-type">objects</span>.<span class="hljs-type">KNPOI</span>)</span></span>: kotlin.<span class="hljs-built_in">Unit</span>
+</code></pre>
+<pre><code class="language-kotlin">_naviView.popupInfoViewWillGoToGoal(_goal!!)
+</code></pre>
+<ul>
+<li>목적지 정보만 주면 바로 길안내 가능.</li>
+</ul>
+<hr>
+<blockquote>
+<p>popupInfoViewClose</p>
+</blockquote>
+<pre><code class="language-kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">open</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">popupInfoViewClose</span><span class="hljs-params">(view: <span class="hljs-type">android</span>.<span class="hljs-type">view</span>.<span class="hljs-type">View</span>)</span></span>: kotlin.<span class="hljs-built_in">Unit</span>
+</code></pre>
+<pre><code class="language-kotlin">_naviView.popupInfoViewClose(view)
+</code></pre>
+<ul>
+<li>팝업뷰를 닫는것 같은데 잘모르겠음.</li>
+</ul>
+<hr>
+<blockquote>
+<p>aroundMenuViewClickMenuBtn</p>
+</blockquote>
+<pre><code class="language-kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">open</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">aroundMenuViewClickMenuBtn</span><span class="hljs-params">()</span></span>: kotlin.<span class="hljs-built_in">Unit</span>
+</code></pre>
+<pre><code class="language-kotlin">_naviView.aroundMenuViewClickMenuBtn()
+</code></pre>
+<ul>
+<li>//TODO 뭔지 모르겠음</li>
+</ul>
+<hr>
+<blockquote>
+<p>aroundMenuViewSelectItem</p>
+</blockquote>
+<pre><code class="language-kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">open</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">aroundMenuViewSelectItem</span><span class="hljs-params">(aMenuData: <span class="hljs-type">com</span>.<span class="hljs-type">kakaomobility</span>.<span class="hljs-type">knsdk</span>.<span class="hljs-type">n1</span>.<span class="hljs-type">a</span>)</span></span>: kotlin.<span class="hljs-built_in">Unit</span>
+</code></pre>
+<pre><code class="language-kotlin">_naviView.aroundMenuViewSelectItem()
+</code></pre>
+<ul>
+<li>//TODO 뭔지 모르겠음</li>
+</ul>
+<hr>
+<blockquote>
+<p>bottomViewGuideEnded</p>
+</blockquote>
+<pre><code class="language-kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">open</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">bottomViewGuideEnded</span><span class="hljs-params">()</span></span>: kotlin.<span class="hljs-built_in">Unit</span>
+</code></pre>
+<pre><code class="language-kotlin">_naviView.bottomViewGuideEnded()
+</code></pre>
+<ul>
+<li>가이드 중 하단 메뉴의 &quot;길안내 종료&quot; 기능</li>
+</ul>
+<hr>
+<blockquote>
+<p>bottomViewGuideReroute</p>
+</blockquote>
+<pre><code class="language-kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">open</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">bottomViewGuideReroute</span><span class="hljs-params">()</span></span>: kotlin.<span class="hljs-built_in">Unit</span>
+</code></pre>
+<pre><code class="language-kotlin">_naviView.bottomViewGuideReroute()
+</code></pre>
+<ul>
+<li>가이드 중 하단 메뉴의 &quot;새로고침&quot; 기능</li>
+</ul>
+<hr>
+<blockquote>
+<p>bottomViewOnMenu</p>
+</blockquote>
+<pre><code class="language-kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">open</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">bottomViewOnMenu</span><span class="hljs-params">()</span></span>: kotlin.<span class="hljs-built_in">Unit</span>
+</code></pre>
+<pre><code class="language-kotlin">_naviView.bottomViewOnMenu()
+</code></pre>
+<ul>
+<li>가이드 중 하단 메뉴의 &quot;메뉴클릭&quot; 기능
+<img src="file:////Users/ryugihyun/KakaoNaviUISDK/raw/Images/2023-02-08-11-09-36.png" alt=""></li>
+</ul>
+<hr>
+<blockquote>
+<p>bottomMenuViewFullRoute</p>
+</blockquote>
+<pre><code class="language-kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">open</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">bottomMenuViewFullRoute</span><span class="hljs-params">()</span></span>: kotlin.<span class="hljs-built_in">Unit</span>
+</code></pre>
+<pre><code class="language-kotlin">_naviView.bottomMenuViewFullRoute()
+</code></pre>
+<ul>
+<li>가이드 중 하단 메뉴의 &quot;전체경로&quot; 기능
+<img src="file:////Users/ryugihyun/KakaoNaviUISDK/raw/Images/2023-02-08-11-11-17.png" alt=""></li>
+</ul>
+<hr>
+<blockquote>
+<p>bottomMenuViewAnotherRoute</p>
+</blockquote>
+<pre><code class="language-kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">open</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">bottomMenuViewAnotherRoute</span><span class="hljs-params">()</span></span>: kotlin.<span class="hljs-built_in">Unit</span>
+</code></pre>
+<pre><code class="language-kotlin">_naviView.bottomMenuViewAnotherRoute()
+</code></pre>
+<ul>
+<li>가이드 중 하단 메뉴의 &quot;다른경로&quot; 기능
+<img src="file:////Users/ryugihyun/KakaoNaviUISDK/raw/Images/2023-02-08-11-13-34.png" alt=""></li>
+</ul>
+<hr>
+<blockquote>
+<p>bottomMenuViewCancelRoute</p>
+</blockquote>
+<pre><code class="language-kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">open</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">bottomMenuViewCancelRoute</span><span class="hljs-params">()</span></span>: kotlin.<span class="hljs-built_in">Unit</span>
+</code></pre>
+<pre><code class="language-kotlin">_naviView.bottomMenuViewCancelRoute()
+</code></pre>
+<ul>
+<li>가이드 중 하단 메뉴의 &quot;경로취소&quot; 기능</li>
+<li><strong>NaviView.bottomMenuComponent.useGuideCancel = false</strong>와 관계없이 동작</li>
+</ul>
+<hr>
+<blockquote>
+<p>bottomMenuViewCancelRoute</p>
+</blockquote>
+<pre><code class="language-kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">open</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">bottomMenuViewCancelRoute</span><span class="hljs-params">()</span></span>: kotlin.<span class="hljs-built_in">Unit</span>
+</code></pre>
+<pre><code class="language-kotlin">_naviView.bottomMenuViewCancelRoute()
+</code></pre>
+<ul>
+<li>가이드 중 하단 메뉴의 &quot;경로취소&quot; 기능</li>
+</ul>
+<hr>
+<blockquote>
+<p>bottomMenuViewRemoveVia</p>
+</blockquote>
+<pre><code class="language-kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">open</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">bottomMenuViewRemoveVia</span><span class="hljs-params">()</span></span>: kotlin.<span class="hljs-built_in">Unit</span>
+</code></pre>
+<pre><code class="language-kotlin">_naviView.bottomMenuViewRemoveVia()
+</code></pre>
+<ul>
+<li>가이드 중 &quot;경유지삭제&quot; 기능. 앞선 순위의 경유지부터 삭제한다.</li>
+</ul>
+<hr>
+<blockquote>
+<p>bottomMenuViewDriveSetting</p>
+</blockquote>
+<pre><code class="language-kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">open</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">bottomMenuViewDriveSetting</span><span class="hljs-params">()</span></span>: kotlin.<span class="hljs-built_in">Unit</span>
+</code></pre>
+<pre><code class="language-kotlin">_naviView.bottomMenuViewDriveSetting()
+</code></pre>
+<ul>
+<li>가이드 중 하단 메뉴의 &quot;주행설정&quot; 기능
+<img src="file:////Users/ryugihyun/KakaoNaviUISDK/raw/Images/2023-02-08-11-28-32.png" alt=""></li>
+</ul>
+<hr>
+<blockquote>
+<p>bottomMenuViewGuideEnded</p>
+</blockquote>
+<pre><code class="language-kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">open</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">bottomMenuViewGuideEnded</span><span class="hljs-params">()</span></span>: kotlin.<span class="hljs-built_in">Unit</span>
+</code></pre>
+<pre><code class="language-kotlin">_naviView.bottomMenuViewGuideEnded()
+</code></pre>
+<ul>
+<li>가이드 중 하단 메뉴의 &quot;길안내 종료&quot; 기능</li>
+</ul>
+<hr>
+<blockquote>
+<p>curPositionViewToCurLocation</p>
+</blockquote>
+<pre><code class="language-kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">open</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">curPositionViewToCurLocation</span><span class="hljs-params">()</span></span>: kotlin.<span class="hljs-built_in">Unit</span>
+</code></pre>
+<pre><code class="language-kotlin">_naviView.curPositionViewToCurLocation()
+</code></pre>
+<ul>
+<li>가이드 중 하단 메뉴의 &quot;현위치로&quot; 기능</li>
+</ul>
+<hr>
+<blockquote>
+<p>emergencyButtonViewClick</p>
+</blockquote>
+<pre><code class="language-kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">open</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">emergencyButtonViewClick</span><span class="hljs-params">()</span></span>: kotlin.<span class="hljs-built_in">Unit</span> { <span class="hljs-comment">/* compiled code */</span> }
+</code></pre>
+<pre><code class="language-kotlin">_naviView.emergencyButtonViewClick()
+</code></pre>
+<ul>
+<li>//TODO: 확인필요</li>
+</ul>
+<hr>
+<blockquote>
+<p>accidentButtonViewClick</p>
+</blockquote>
+<pre><code class="language-kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">open</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">accidentButtonViewClick</span><span class="hljs-params">()</span></span>: kotlin.<span class="hljs-built_in">Unit</span> { <span class="hljs-comment">/* compiled code */</span> }
+</code></pre>
+<pre><code class="language-kotlin">_naviView.accidentButtonViewClick()
+</code></pre>
+<ul>
+<li>//TODO: 확인필요</li>
+</ul>
+<hr>
+<p>##guideStateDelegate 관련 function
+상기 function들은 guideState를 받기 위한 함수들입니다. Override되어있으며 데이터가 들어올때 해당 정보를 처리해줍니다.(Reciever)
+guideStateDelegate는 주행중 안내 상태가 변경될 때 호출됩니다.</p>
+<ul>
+<li>guidanceGuideStarted</li>
+<li>guidanceCheckingRouteChange</li>
+<li>guidanceRouteUnchanged</li>
+<li>guidanceRouteUnchangedWithError</li>
+<li>guidanceOutOfRoute</li>
+<li>guidanceRouteChanged</li>
+<li>guidanceGuideEnded</li>
+<li>guidanceDidUpdateRoutes</li>
+</ul>
+<blockquote>
+<p>guidanceGuideStarted</p>
+</blockquote>
+<pre><code class="language-kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">guidanceGuideStarted</span><span class="hljs-params">(aGuidance: <span class="hljs-type">com</span>.<span class="hljs-type">kakaomobility</span>.<span class="hljs-type">knsdk</span>.<span class="hljs-type">guidance</span>.<span class="hljs-type">knguidance</span>.<span class="hljs-type">KNGuidance</span>)</span></span>: kotlin.<span class="hljs-built_in">Unit</span>
+</code></pre>
+<pre><code class="language-kotlin"><span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">guidanceGuideStarted</span><span class="hljs-params">(aGuidance: <span class="hljs-type">KNGuidance</span>)</span></span> {
+    _naviView.guidanceGuideStarted(aGuidance)
+}
+</code></pre>
+<ul>
+<li>길안내 시작시 호출. &quot;안내를 시작&quot; 음성 안내가 발생하는 시점</li>
+</ul>
+<hr>
+<blockquote>
+<p>guidanceCheckingRouteChange</p>
+</blockquote>
+<pre><code class="language-kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">guidanceCheckingRouteChange</span><span class="hljs-params">(aGuidance: <span class="hljs-type">com</span>.<span class="hljs-type">kakaomobility</span>.<span class="hljs-type">knsdk</span>.<span class="hljs-type">guidance</span>.<span class="hljs-type">knguidance</span>.<span class="hljs-type">KNGuidance</span>)</span></span>: kotlin.<span class="hljs-built_in">Unit</span>
+</code></pre>
+<pre><code class="language-kotlin"><span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">guidanceCheckingRouteChange</span><span class="hljs-params">(aGuidance: <span class="hljs-type">KNGuidance</span>)</span></span> {
+    _naviView.guidanceCheckingRouteChange(aGuidance)
+}
+</code></pre>
+<ul>
+<li>경로가 변경되면 호출. &quot;교통변화를 감시&quot; 음성안내가 발생하는 시점</li>
+</ul>
+<hr>
+<blockquote>
+<p>guidanceRouteUnchanged</p>
+</blockquote>
+<pre><code class="language-kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">guidanceRouteUnchanged</span><span class="hljs-params">(aGuidance: <span class="hljs-type">com</span>.<span class="hljs-type">kakaomobility</span>.<span class="hljs-type">knsdk</span>.<span class="hljs-type">guidance</span>.<span class="hljs-type">knguidance</span>.<span class="hljs-type">KNGuidance</span>)</span></span>: kotlin.<span class="hljs-built_in">Unit</span>
+</code></pre>
+<pre><code class="language-kotlin"><span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">guidanceRouteUnchanged</span><span class="hljs-params">(aGuidance: <span class="hljs-type">KNGuidance</span>)</span></span> {
+    _naviView.guidanceRouteUnchanged(aGuidance)
+}
+</code></pre>
+<ul>
+<li>수신받은 새경로가 기존의 경로와 동일한 경우 호출. &quot;기존경로로 안내&quot; 음성안내가 발생하는 시점</li>
+</ul>
+<hr>
+<blockquote>
+<p>guidanceRouteUnchangedWithError</p>
+</blockquote>
+<pre><code class="language-kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">guidanceRouteUnchangedWithError</span><span class="hljs-params">(aGuidnace: <span class="hljs-type">com</span>.<span class="hljs-type">kakaomobility</span>.<span class="hljs-type">knsdk</span>.<span class="hljs-type">guidance</span>.<span class="hljs-type">knguidance</span>.<span class="hljs-type">KNGuidance</span>, aError: <span class="hljs-type">com</span>.<span class="hljs-type">kakaomobility</span>.<span class="hljs-type">knsdk</span>.<span class="hljs-type">common</span>.<span class="hljs-type">objects</span>.<span class="hljs-type">KNError</span>)</span></span>: kotlin.<span class="hljs-built_in">Unit</span>
+</code></pre>
+<pre><code class="language-kotlin"><span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">guidanceRouteUnchangedWithError</span><span class="hljs-params">(aGuidnace: <span class="hljs-type">KNGuidance</span>, aError: <span class="hljs-type">KNError</span>)</span></span> {
+    _naviView.guidanceRouteUnchangedWithError(aGuidnace, aError)
+}
+</code></pre>
+<ul>
+<li>경로 오류시 호출. 기존경로를 이탈해도 경로 재탐색 없고 GPS신호를 따라 길안내 유지.</li>
+<li>다시 경로를 탐색하려면 수동으로 경로를 탐색해야하며 현재 위치가 기존의 경로를 벗어낫을때만 새경로 안내</li>
+</ul>
+<hr>
+<blockquote>
+<p>guidanceOutOfRoute</p>
+</blockquote>
+<pre><code class="language-kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">guidanceOutOfRoute</span><span class="hljs-params">(aGuidance: <span class="hljs-type">com</span>.<span class="hljs-type">kakaomobility</span>.<span class="hljs-type">knsdk</span>.<span class="hljs-type">guidance</span>.<span class="hljs-type">knguidance</span>.<span class="hljs-type">KNGuidance</span>)</span></span>: kotlin.<span class="hljs-built_in">Unit</span>
+</code></pre>
+<pre><code class="language-kotlin"><span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">guidanceOutOfRoute</span><span class="hljs-params">(aGuidance: <span class="hljs-type">KNGuidance</span>)</span></span> {
+    _naviView.guidanceOutOfRoute(aGuidance)
+}
+</code></pre>
+<ul>
+<li>경로에서 이탈한 뒤 새로운 경로 요청시 호출. &quot;경로 이탈 재검색&quot; 음성안내가 발생하는 시점</li>
+</ul>
+<hr>
+<blockquote>
+<p>guidanceRouteChanged</p>
+</blockquote>
+<pre><code class="language-kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">guidanceRouteChanged</span><span class="hljs-params">(aGuidance: <span class="hljs-type">com</span>.<span class="hljs-type">kakaomobility</span>.<span class="hljs-type">knsdk</span>.<span class="hljs-type">guidance</span>.<span class="hljs-type">knguidance</span>.<span class="hljs-type">KNGuidance</span>)</span></span>: kotlin.<span class="hljs-built_in">Unit</span>
+</code></pre>
+<pre><code class="language-kotlin"><span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">guidanceRouteChanged</span><span class="hljs-params">(aGuidance: <span class="hljs-type">KNGuidance</span>)</span></span> {
+    _naviView.guidanceRouteChanged(aGuidance)
+}
+</code></pre>
+<ul>
+<li>수신받은 새경로가 기존의 안내된 경로와 다를경우 호출. &quot;경로 변경, 새로운 길안내&quot; 음성안내가 발생하는 시점</li>
+</ul>
+<hr>
+<blockquote>
+<p>guidanceGuideEnded</p>
+</blockquote>
+<pre><code class="language-kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">guidanceGuideEnded</span><span class="hljs-params">(aGuidance: <span class="hljs-type">com</span>.<span class="hljs-type">kakaomobility</span>.<span class="hljs-type">knsdk</span>.<span class="hljs-type">guidance</span>.<span class="hljs-type">knguidance</span>.<span class="hljs-type">KNGuidance</span>, isShowDriveResultDialog: <span class="hljs-type">kotlin</span>.<span class="hljs-type">Boolean</span> <span class="hljs-comment">/* = compiled code */</span>)</span></span>: kotlin.<span class="hljs-built_in">Unit</span> 
+</code></pre>
+<pre><code class="language-kotlin"><span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">guidanceGuideEnded</span><span class="hljs-params">(aGuidance: <span class="hljs-type">KNGuidance</span>)</span></span> {
+    _naviView.guidanceGuideEnded(aGuidance, <span class="hljs-literal">false</span>)
+}
+</code></pre>
+<ul>
+<li>길안내가 종료되면 호출. &quot;목적지 도착. 안내 종료&quot; 음성안내가 발생하는 시점</li>
+<li>isShowDriveResultDialog가 true이면 길안내 완료 다이얼로그팝업이 노출, false면 비노출.</li>
+</ul>
+<hr>
+<blockquote>
+<p>guidanceDidUpdateRoutes</p>
+</blockquote>
+<pre><code class="language-kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">guidanceDidUpdateRoutes</span><span class="hljs-params">(aGuidance: <span class="hljs-type">com</span>.<span class="hljs-type">kakaomobility</span>.<span class="hljs-type">knsdk</span>.<span class="hljs-type">guidance</span>.<span class="hljs-type">knguidance</span>.<span class="hljs-type">KNGuidance</span>, aRoutes: <span class="hljs-type">kotlin</span>.<span class="hljs-type">collections</span>.<span class="hljs-type">List</span>&lt;<span class="hljs-type">com</span>.<span class="hljs-type">kakaomobility</span>.<span class="hljs-type">knsdk</span>.<span class="hljs-type">trip</span>.<span class="hljs-type">kntrip</span>.<span class="hljs-type">knroute</span>.<span class="hljs-type">KNRoute</span>&gt;, aMultiRouteInfo: <span class="hljs-type">com</span>.<span class="hljs-type">kakaomobility</span>.<span class="hljs-type">knsdk</span>.<span class="hljs-type">guidance</span>.<span class="hljs-type">knguidance</span>.<span class="hljs-type">routeguide</span>.<span class="hljs-type">objects</span>.<span class="hljs-type">KNMultiRouteInfo</span>?)</span></span>: kotlin.<span class="hljs-built_in">Unit</span>
+</code></pre>
+<pre><code class="language-kotlin"><span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">guidanceDidUpdateRoutes</span><span class="hljs-params">(
+        aGuidance: <span class="hljs-type">KNGuidance</span>,
+        aRoutes: <span class="hljs-type">List</span>&lt;<span class="hljs-type">KNRoute</span>&gt;,
+        aMultiRouteInfo: <span class="hljs-type">KNMultiRouteInfo</span>?
+)</span></span> {
+    _naviView.guidanceDidUpdateRoutes(aGuidance, aRoutes, aMultiRouteInfo)
+}
+</code></pre>
+<ul>
+<li>주행중 기타요인으로 경로가 변경되었을때 호출.</li>
+<li>guidanceRouteUnchange/Changed와 별개로 동작하며 동일한 경로라도 경로데이터가 변경되었을 경우 호출될 수 있음</li>
+</ul>
+<hr>
+<p>##locationGuideDelegate 관련 function
+상기 function들은 locationGuide를 받기 위한 함수들입니다. Override되어있으며 데이터가 들어올때 해당 정보를 처리해줍니다.(Reciever)
+locationGuideDelegate 위치를 나타냄. 주행중 안내 위치가 변경될 때 호출. 현재는 매번 GPS신호를 수신할 때마다 호출.</p>
+<ul>
+<li>guidanceDidUpdateLocation</li>
+</ul>
+<blockquote>
+<p>guidanceDidUpdateLocation</p>
+</blockquote>
+<pre><code class="language-kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">guidanceDidUpdateLocation</span><span class="hljs-params">(aGuidance: <span class="hljs-type">com</span>.<span class="hljs-type">kakaomobility</span>.<span class="hljs-type">knsdk</span>.<span class="hljs-type">guidance</span>.<span class="hljs-type">knguidance</span>.<span class="hljs-type">KNGuidance</span>, aLocationGuide: <span class="hljs-type">com</span>.<span class="hljs-type">kakaomobility</span>.<span class="hljs-type">knsdk</span>.<span class="hljs-type">guidance</span>.<span class="hljs-type">knguidance</span>.<span class="hljs-type">locationguide</span>.<span class="hljs-type">KNGuide_Location</span>)</span></span>: kotlin.<span class="hljs-built_in">Unit</span>
+</code></pre>
+<pre><code class="language-kotlin"><span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">guidanceDidUpdateLocation</span><span class="hljs-params">(
+        aGuidance: <span class="hljs-type">KNGuidance</span>,
+        aLocationGuide: <span class="hljs-type">KNGuide_Location</span>
+)</span></span> {        
+    _naviView.guidanceDidUpdateLocation(aGuidance, aLocationGuide)
+}
+</code></pre>
+<ul>
+<li>위지 정보가 변경될 경우 호출. locationGuide항목이 1개 이상 변경시 전달. 세부항목중 변경이 없는 것은 동일한 객체로 전달</li>
+</ul>
+<hr>
+<p>##routeGuideDelegate 관련 function
+상기 function들은 routeGuide를 받기 위한 함수들입니다. Override되어있으며 데이터가 들어올때 해당 정보를 처리해줍니다.(Reciever)
+routeGuideDelegate는 경로를 안내하는 델리게이트. 주행중 경로 안내 정보가 변경될 때 호출</p>
+<ul>
+<li>guidanceDidUpdateRouteGuide</li>
+</ul>
+<blockquote>
+<p>guidanceDidUpdateRouteGuide</p>
+</blockquote>
+<pre><code class="language-kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">guidanceDidUpdateRouteGuide</span><span class="hljs-params">(aGuidance: <span class="hljs-type">com</span>.<span class="hljs-type">kakaomobility</span>.<span class="hljs-type">knsdk</span>.<span class="hljs-type">guidance</span>.<span class="hljs-type">knguidance</span>.<span class="hljs-type">KNGuidance</span>, aRouteGuide: <span class="hljs-type">com</span>.<span class="hljs-type">kakaomobility</span>.<span class="hljs-type">knsdk</span>.<span class="hljs-type">guidance</span>.<span class="hljs-type">knguidance</span>.<span class="hljs-type">routeguide</span>.<span class="hljs-type">KNGuide_Route</span>)</span></span>: kotlin.<span class="hljs-built_in">Unit</span>
+</code></pre>
+<pre><code class="language-kotlin"><span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">guidanceDidUpdateRouteGuide</span><span class="hljs-params">(aGuidance: <span class="hljs-type">KNGuidance</span>, aRouteGuide: <span class="hljs-type">KNGuide_Route</span>)</span></span> {
+    _naviView.guidanceDidUpdateRouteGuide(aGuidance, aRouteGuide)
+}
+</code></pre>
+<ul>
+<li>경로 안내 정보를 업데이트. routeGuide의 항목 1개 이상 변경시 전달. 세부항목중 변경없는 것은 동일한 객체로 전달</li>
+</ul>
+<hr>
+<p>##safetyGuideDelegate 관련 function
+상기 function들은 safetyGuide를 받기 위한 함수들입니다. Override되어있으며 데이터가 들어올때 해당 정보를 처리해줍니다.(Reciever)
+safetyGuideDelegate는 안전운행 델리게이트. 안전운행 정보가 변경될 때 호출.</p>
+<ul>
+<li>guidanceDidUpdateSafetyGuide</li>
+<li>guidanceDidUpdateAroundSafeties</li>
+</ul>
+<blockquote>
+<p>guidanceDidUpdateSafetyGuide</p>
+</blockquote>
+<pre><code class="language-kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">guidanceDidUpdateSafetyGuide</span><span class="hljs-params">(aGuidance: <span class="hljs-type">com</span>.<span class="hljs-type">kakaomobility</span>.<span class="hljs-type">knsdk</span>.<span class="hljs-type">guidance</span>.<span class="hljs-type">knguidance</span>.<span class="hljs-type">KNGuidance</span>, aSafetyGuide: <span class="hljs-type">com</span>.<span class="hljs-type">kakaomobility</span>.<span class="hljs-type">knsdk</span>.<span class="hljs-type">guidance</span>.<span class="hljs-type">knguidance</span>.<span class="hljs-type">safetyguide</span>.<span class="hljs-type">KNGuide_Safety</span>?)</span></span>: kotlin.<span class="hljs-built_in">Unit</span>
+</code></pre>
+<pre><code class="language-kotlin"><span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">guidanceDidUpdateSafetyGuide</span><span class="hljs-params">(
+        aGuidance: <span class="hljs-type">KNGuidance</span>,
+        aSafetyGuide: <span class="hljs-type">KNGuide_Safety</span>?
+)</span></span> {
+    _naviView.guidanceDidUpdateSafetyGuide(aGuidance, aSafetyGuide)
+}
+</code></pre>
+<ul>
+<li>안전운행 정보 업데이트. safetyGuide 항목 1개 이상 변경시 전달. 변경없는 것은 동일한 객체로 전달</li>
+</ul>
+<hr>
+<blockquote>
+<p>guidanceDidUpdateAroundSafeties</p>
+</blockquote>
+<pre><code class="language-kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">guidanceDidUpdateAroundSafeties</span><span class="hljs-params">(aGuidance: <span class="hljs-type">com</span>.<span class="hljs-type">kakaomobility</span>.<span class="hljs-type">knsdk</span>.<span class="hljs-type">guidance</span>.<span class="hljs-type">knguidance</span>.<span class="hljs-type">KNGuidance</span>, aSafeties: <span class="hljs-type">kotlin</span>.<span class="hljs-type">collections</span>.<span class="hljs-type">List</span>&lt;<span class="hljs-type">com</span>.<span class="hljs-type">kakaomobility</span>.<span class="hljs-type">knsdk</span>.<span class="hljs-type">guidance</span>.<span class="hljs-type">knguidance</span>.<span class="hljs-type">safetyguide</span>.<span class="hljs-type">objects</span>.<span class="hljs-type">KNSafety</span>&gt;?)</span></span>: kotlin.<span class="hljs-built_in">Unit</span>
+</code></pre>
+<pre><code class="language-kotlin"><span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">guidanceDidUpdateAroundSafeties</span><span class="hljs-params">(
+        aGuidance: <span class="hljs-type">KNGuidance</span>,
+        aSafeties: <span class="hljs-type">List</span>&lt;<span class="hljs-type">KNSafety</span>&gt;?
+)</span></span> {
+    _naviView.guidanceDidUpdateAroundSafeties(aGuidance, aSafeties)
+}
+</code></pre>
+<ul>
+<li>주변 안전운행 정보 업데이트</li>
+</ul>
+<hr>
+<p>##voiceGuideDelegate 관련 function
+상기 function들은 voiceGuide 받기 위한 함수들입니다. Override되어있으며 데이터가 들어올때 해당 정보를 처리해줍니다.(Reciever)
+voiceGuideDelegate는 음성안내 델리게이트. 음성안내 시작 및 종료와 관련된 정보 요청 및 전달.</p>
+<ul>
+<li>shouldPlayVoiceGuide</li>
+<li>willPlayVoiceGuide</li>
+<li>didFinishPlayVoiceGuide</li>
+</ul>
+<blockquote>
+<p>shouldPlayVoiceGuide</p>
+</blockquote>
+<pre><code class="language-kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">shouldPlayVoiceGuide</span><span class="hljs-params">(aGuidance: <span class="hljs-type">com</span>.<span class="hljs-type">kakaomobility</span>.<span class="hljs-type">knsdk</span>.<span class="hljs-type">guidance</span>.<span class="hljs-type">knguidance</span>.<span class="hljs-type">KNGuidance</span>, aVoiceGuide: <span class="hljs-type">com</span>.<span class="hljs-type">kakaomobility</span>.<span class="hljs-type">knsdk</span>.<span class="hljs-type">guidance</span>.<span class="hljs-type">knguidance</span>.<span class="hljs-type">voiceguide</span>.<span class="hljs-type">KNGuide_Voice</span>, aNewData: <span class="hljs-type">kotlin</span>.<span class="hljs-type">collections</span>.<span class="hljs-type">MutableList</span>&lt;<span class="hljs-type">kotlin</span>.<span class="hljs-type">ByteArray</span>&gt;)</span></span>: kotlin.<span class="hljs-built_in">Boolean</span>
+</code></pre>
+<pre><code class="language-kotlin"><span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">shouldPlayVoiceGuide</span><span class="hljs-params">(
+        aGuidance: <span class="hljs-type">KNGuidance</span>,
+        aVoiceGuide: <span class="hljs-type">KNGuide_Voice</span>,
+        aNewData: <span class="hljs-type">MutableList</span>&lt;<span class="hljs-type">ByteArray</span>&gt;
+)</span></span>: <span class="hljs-built_in">Boolean</span> {
+    <span class="hljs-keyword">return</span> _naviView.shouldPlayVoiceGuide(aGuidance, aVoiceGuide, aNewData)
+}
+</code></pre>
+<ul>
+<li>음성안내 사용여부 설정</li>
+<li>다음과 같은 형식으로 각 음성종류의 출력여부를 결정할 수 있다.</li>
+</ul>
+<pre><code class="language-kotlin"><span class="hljs-keyword">if</span>(aVoiceGuide.voiceCode == KNVoiceCode.KNVoiceCode_StartGuide)
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
+</code></pre>
+<ul>
+<li>각 음성의 종류는 다음과 같다.
+<ul>
+<li>KNVoiceCode.KNVoiceCode_Turn : 회전구간 안내</li>
+<li>KNVoiceCode.KNVoiceCode_Safety : 안전운전 안내</li>
+<li>KNVoiceCode.KNVoiceCode_StartGuide : 음성안내 시작 (&quot;안내를 시작하겠습니다.&quot;)</li>
+<li>KNVoiceCode.KNVoiceCode_EndGuide : 음성안내 종료</li>
+<li>KNVoiceCode.KNVoiceCode_DetailDir : 상세교차로 차선안내</li>
+<li>KNVoiceCode.KNVoiceCode_MultiRoute : 다중경로 분기점안내</li>
+<li>KNVoiceCode.KNVoiceCode_SchoolZone : 어린이보호구역 안내</li>
+<li>KNVoiceCode.KNVoiceCode_Hipass : 하이패스 차선안내</li>
+<li>KNVoiceCode.KNVoiceCode_StrateToNext : 직진안내</li>
+<li>KNVoiceCode.KNVoiceCode_CheckingRouteChange : 교통변화 안내 (&quot;교통변화를 감지중입니다.&quot;)</li>
+<li>KNVoiceCode.KNVoiceCode_RouteChanged : 경로변경 안내 (&quot;교통상황이 변하여 새로운 경로로 안내합니다.&quot;)</li>
+<li>KNVoiceCode.KNVoiceCode_RouteUnchanged : 기존경로 안내 (&quot;기존 경로로 계속 안내합니다.&quot;)</li>
+<li>KNVoiceCode.KNVoiceCode_OutOfRoute : 경로 이탈 안내 (&quot;경로를 이탈하였습니다.&quot;)</li>
+<li>KNVoiceCode.KNVoiceCode_GPSConnected : GPS연결 안내</li>
+<li>KNVoiceCode.KNVoiceCode_Alram : 알람(안전운전 지점 통과 등)</li>
+<li>KNVoiceCode.KNVoiceCode_Alert : 경고(속도 초과 등)</li>
+<li>KNVoiceCode.KNVoiceCode_LinkSound : 링크기반 음성</li>
+</ul>
+</li>
+</ul>
+<hr>
+<blockquote>
+<p>willPlayVoiceGuide</p>
+</blockquote>
+<pre><code class="language-kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">willPlayVoiceGuide</span><span class="hljs-params">(aGuidance: <span class="hljs-type">com</span>.<span class="hljs-type">kakaomobility</span>.<span class="hljs-type">knsdk</span>.<span class="hljs-type">guidance</span>.<span class="hljs-type">knguidance</span>.<span class="hljs-type">KNGuidance</span>, aVoiceGuide: <span class="hljs-type">com</span>.<span class="hljs-type">kakaomobility</span>.<span class="hljs-type">knsdk</span>.<span class="hljs-type">guidance</span>.<span class="hljs-type">knguidance</span>.<span class="hljs-type">voiceguide</span>.<span class="hljs-type">KNGuide_Voice</span>)</span></span>: kotlin.<span class="hljs-built_in">Unit</span>
+</code></pre>
+<pre><code class="language-kotlin"><span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">willPlayVoiceGuide</span><span class="hljs-params">(aGuidance: <span class="hljs-type">KNGuidance</span>, aVoiceGuide: <span class="hljs-type">KNGuide_Voice</span>)</span></span> {
+    _naviView.willPlayVoiceGuide(aGuidance, aVoiceGuide)
+}
+</code></pre>
+<ul>
+<li>음성 안내를 시작합니다.</li>
+</ul>
+<hr>
+<blockquote>
+<p>didFinishPlayVoiceGuide</p>
+</blockquote>
+<pre><code class="language-kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">didFinishPlayVoiceGuide</span><span class="hljs-params">(aGuidance: <span class="hljs-type">com</span>.<span class="hljs-type">kakaomobility</span>.<span class="hljs-type">knsdk</span>.<span class="hljs-type">guidance</span>.<span class="hljs-type">knguidance</span>.<span class="hljs-type">KNGuidance</span>, aVoiceGuide: <span class="hljs-type">com</span>.<span class="hljs-type">kakaomobility</span>.<span class="hljs-type">knsdk</span>.<span class="hljs-type">guidance</span>.<span class="hljs-type">knguidance</span>.<span class="hljs-type">voiceguide</span>.<span class="hljs-type">KNGuide_Voice</span>)</span></span>: kotlin.<span class="hljs-built_in">Unit</span>
+</code></pre>
+<pre><code class="language-kotlin"><span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">didFinishPlayVoiceGuide</span><span class="hljs-params">(aGuidance: <span class="hljs-type">KNGuidance</span>, aVoiceGuide: <span class="hljs-type">KNGuide_Voice</span>)</span></span> {
+    _naviView.didFinishPlayVoiceGuide(aGuidance, aVoiceGuide)
+}
+</code></pre>
+<ul>
+<li>음성 안내를 종료합니다.</li>
+</ul>
+<hr>
+<p>##citsGuideDelegate 관련 function
+상기 function들은 citsGuide를 받기 위한 함수들입니다. Override되어있으며 데이터가 들어올때 해당 정보를 처리해줍니다.(Reciever)
+citsGuideDelegate는 C-ITS(협력지능형교통체계) 정보가 변경되면 호출</p>
+<ul>
+<li>didUpdateCitsGuide</li>
+</ul>
+<blockquote>
+<p>didUpdateCitsGuide</p>
+</blockquote>
+<pre><code class="language-kotlin"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">didUpdateCitsGuide</span><span class="hljs-params">(aGuidance: <span class="hljs-type">com</span>.<span class="hljs-type">kakaomobility</span>.<span class="hljs-type">knsdk</span>.<span class="hljs-type">guidance</span>.<span class="hljs-type">knguidance</span>.<span class="hljs-type">KNGuidance</span>, aCitsGuide: <span class="hljs-type">com</span>.<span class="hljs-type">kakaomobility</span>.<span class="hljs-type">knsdk</span>.<span class="hljs-type">guidance</span>.<span class="hljs-type">knguidance</span>.<span class="hljs-type">citsguide</span>.<span class="hljs-type">KNGuide_Cits</span>)</span></span>: kotlin.<span class="hljs-built_in">Unit</span>
+</code></pre>
+<pre><code class="language-kotlin"><span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">didUpdateCitsGuide</span><span class="hljs-params">(aGuidance: <span class="hljs-type">KNGuidance</span>, aCitsGuide: <span class="hljs-type">KNGuide_Cits</span>)</span></span> {
+    _naviView.didUpdateCitsGuide(aGuidance, aCitsGuide)
+}
+</code></pre>
+<ul>
+<li>C-ITS가 업데이트 될 경우 호출. citsGuide의 항목이 1개 이상 변경시 전달. 변경없는 항목은 이전과 동일한 객체로 전달</li>
+</ul>
+
+        
+        
+    </body>
+    </html>
