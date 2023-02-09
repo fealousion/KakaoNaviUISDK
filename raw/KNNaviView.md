@@ -36,9 +36,9 @@ _naviView.changeDisplayType(KNDisplayType.KNDisplayType_SEARCH)
 
 - 지도의 이미지(색상)에 변경이 있어보입니다.
 - KNDisplayType.KNDisplayType_DRIVE
-![이미지?](https://drive.google.com/uc?export=download&id=1HYi7IdicKIeNyjMZFDeRSeM51KOhbSZQ)s
+<img src="/images/changeDisplayType_01.png" width="60%" height="60%"/>
 - KNDisplayType.KNDisplayType_SEARCH
-![](/images/2023-02-06-18-06-53.png)
+<img src="/images/changeDisplayType_02.png" width="60%" height="60%"/>
 ---
 
 
@@ -53,8 +53,8 @@ _naviView.mapViewWillMoveToMap()
 ```
 
 - 가이드 중 화면을 움직였을때 모습을 보여줍니다.(경로안내/안전운행)
-![](Images/2023-02-06-18-12-55.png)
-![](Images/2023-02-06-18-13-05.png)
+<img src="/images/mapViewWillMoveToMap_01.png" width="60%" height="60%"/>
+<img src="/images/mapViewWillMoveToMap_02.png" width="60%" height="60%"/>
 ---
 
 
@@ -70,7 +70,7 @@ _naviView.mapViewDidSingleTap()
 
 - 화면을 한번 터치했을때 모습을 보여줍니다.
 - 가이드 중 에만 동작하며 하단 메뉴바 터치와 같은 기능을 합니다.(경로안내)
-![](Images/2023-02-06-18-26-23.png)
+<img src="/images/mapViewDidSingleTap_01.png" width="60%" height="60%"/>
 ---
 
 
@@ -86,7 +86,7 @@ _naviView.mapViewDidDoubleTap()
 
 - 화면을 빠르게 두번 터치했을때 모습을 보여줍니다.
 - 가이드 중 에만 동작하며 '전체 경로보기' 기능을 합니다.(경로안내)
-![](Images/2023-02-06-18-28-05.png)
+<img src="/images/mapViewDidDoubleTap_01.png" width="60%" height="60%"/>
 ---
 
 
@@ -131,8 +131,8 @@ _naviView.mapViewChangeRoute(_route)
 - 설정된 _route로 경로를 표기해줍니다.
 - 경로가 표기되기 위해서는 가이드에 대안경로가 있어야 됩니다. 대안경로가 없다면 동작하지 않습니다.
 - 대안경로가 있다는 가정하에 호출하면 대안경로와 기존경로를 번갈아가며 노출합니다.
-![](Images/2023-02-07-10-56-02.png)
-![](Images/2023-02-07-10-56-10.png)
+<img src="/images/mapViewChangeRoute_01.png" width="60%" height="60%"/>
+<img src="/images/mapViewChangeRoute_02.png" width="60%" height="60%"/>
 ---
 
 
@@ -148,7 +148,7 @@ _naviView.mapViewViaPointTouched(_goal!!)
 
 - 특정 POI에 대한 패널이 노출이 됩니다.
 - 다만 해당기능이 다른 작업을 하는 것은 확인하지 못했습니다.
-![](Images/2023-02-07-10-58-42.png)
+<img src="/images/mapViewViaPointTouched_01.png" width="60%" height="60%"/>
 ---
 
 
@@ -213,24 +213,24 @@ _naviView.highwayModeBgViewReqChangeViewMode(KNNaviViewState.SafetyTouch)
 
 - MapView의 배경을 KNNaviViewState에 따라 새로 그려줍니다. 루트경로는 새로 그려주지 않습니다.
 - KNNaviViewState.NONE (표기없음)
-![](Images/2023-02-07-12-13-23.png)
-![](Images/2023-02-07-12-13-34.png)
+<img src="/images/KNNaviViewState.NONE_01.png" width="60%" height="60%"/>
+<img src="/images/KNNaviViewState.NONE_02.png" width="60%" height="60%"/>
 - KNNaviViewState.DriveNormal (경로주행)
-![](Images/2023-02-07-12-15-03.png)
-![](Images/2023-02-07-12-15-10.png)
+<img src="/images/KNNaviViewState.DriveNormal_01.png" width="60%" height="60%"/>
+<img src="/images/KNNaviViewState.DriveNormal_02.png" width="60%" height="60%"/>
 - KNNaviViewState.DriveTouch (경로주행 중 터치)
-![](Images/2023-02-07-13-48-25.png)
-![](Images/2023-02-07-13-48-33.png)
+<img src="/images/KNNaviViewState.DriveTouch_01.png" width="60%" height="60%"/>
+<img src="/images/KNNaviViewState.DriveTouch_02.png" width="60%" height="60%"/>
 - KNNaviViewState.DriveFullRoute (전체경로)
-![](Images/2023-02-07-13-49-07.png)
+<img src="/images/KNNaviViewState.DriveFullRoute_01.png" width="60%" height="60%"/>
 - KNNaviViewState.DriveSection (경로목록)
-![](Images/2023-02-07-14-17-02.png)
+<img src="/images/KNNaviViewState.DriveSection_01.png" width="60%" height="60%"/>
 - KNNaviViewState.DriveHighwayMode (고속도로주행?)
-![](Images/2023-02-07-14-18-03.png)
+<img src="/images/KNNaviViewState.DriveHighwayMode_01.png" width="60%" height="60%"/>
 - KNNaviViewState.SafetyNormal (안전운행)
-![](Images/2023-02-07-14-18-40.png)
+<img src="/images/KNNaviViewState.SafetyNormal_01.png" width="60%" height="60%"/>
 - KNNaviViewState.SafetyTouch (안전운행 중 터치)
-![](Images/2023-02-07-14-18-53.png)
+<img src="/images/KNNaviViewState.SafetyTouch_01.png" width="60%" height="60%"/>
 ---
 
 
@@ -247,8 +247,8 @@ _naviView.KNComponentRouteInfoViewChangedRoute(true)
 
 - 대안 경로가 있을때만 동작. 없으면 Error. false면 기존경로 true면 대안경로를 선택합니다.
 - 경로표기와 상단 안내는 바꾸어주지만 실제 가이드 안내 내용변화는 없습니다.
-![](Images/2023-02-07-15-32-06.png)
-![](Images/2023-02-07-15-32-12.png)
+<img src="/images/KNComponentRouteInfoViewChangedRoute_01.png" width="60%" height="60%"/>
+<img src="/images/KNComponentRouteInfoViewChangedRoute_02.png" width="60%" height="60%"/>
 ---
 
 
@@ -265,7 +265,7 @@ _naviView.KNComponentRouteInfoViewRouteSelect(_routeList!!, true)
 - **NaviView.initWithGuidance** 설정된 경로와 **Trip.routeWithPriority** 로 설정된 경로가 다르다는 걸 보여주는 항목입니다.
 - KNComponentRouteInfoViewRouteSelect는 Trip.routeWithPriority으로 생성된 routeList 사용합니다.
 - Boolean값이 **true**면 축소된 화면에서, **false**면 경로 전체가 표현된 화면에서 경로를 보여줍니다.
-![](Images/2023-02-07-15-53-52.png)
+<img src="/images/KNComponentRouteInfoViewRouteSelect_01.png" width="60%" height="60%"/>
 ---
 
 
@@ -294,7 +294,7 @@ _naviView.KNComponentRouteInfoViewShowSectionInfo(_routeList!!)
 ```
 
 - 경로(route)의 상세 목차를 보여줍니다.
-![](Images/2023-02-07-15-54-06.png)
+<img src="/images/KNComponentRouteInfoViewShowSectionInfo_01.png" width="60%" height="60%"/>
 ---
 
 
@@ -551,7 +551,7 @@ _naviView.bottomViewOnMenu()
 ```
 
 - 가이드 중 하단 메뉴의 "메뉴클릭" 기능
-![](Images/2023-02-08-11-09-36.png)
+<img src="/images/bottomViewOnMenu_01.png" width="60%" height="60%"/>
 ---
 
 
@@ -566,7 +566,7 @@ _naviView.bottomMenuViewFullRoute()
 ```
 
 - 가이드 중 하단 메뉴의 "전체경로" 기능
-![](Images/2023-02-08-11-11-17.png)
+<img src="/images/bottomMenuViewFullRoute_01.png" width="60%" height="60%"/>
 ---
 
 
@@ -581,7 +581,7 @@ _naviView.bottomMenuViewAnotherRoute()
 ```
 
 - 가이드 중 하단 메뉴의 "다른경로" 기능
-![](Images/2023-02-08-11-13-34.png)
+<img src="/images/bottomMenuViewAnotherRoute_01.png" width="60%" height="60%"/>
 ---
 
 
@@ -639,7 +639,7 @@ _naviView.bottomMenuViewDriveSetting()
 ```
 
 - 가이드 중 하단 메뉴의 "주행설정" 기능
-![](Images/2023-02-08-11-28-32.png)
+<img src="/images/bottomMenuViewDriveSetting_01.png" width="60%" height="60%"/>
 ---
 
 
