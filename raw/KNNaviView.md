@@ -36,7 +36,7 @@ _naviView.changeDisplayType(KNDisplayType.KNDisplayType_SEARCH)
 
 - 지도의 이미지(색상)에 변경이 있어보입니다.
 - KNDisplayType.KNDisplayType_DRIVE
-![](images/2023-02-06-18-04-41.png)
+![이미지?](https://drive.google.com/uc?export=download&id=1HYi7IdicKIeNyjMZFDeRSeM51KOhbSZQ)s
 - KNDisplayType.KNDisplayType_SEARCH
 ![](/images/2023-02-06-18-06-53.png)
 ---
