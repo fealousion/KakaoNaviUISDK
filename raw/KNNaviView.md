@@ -36,9 +36,9 @@ _naviView.changeDisplayType(KNDisplayType.KNDisplayType_SEARCH)
 
 - 지도의 이미지(색상)에 변경이 있어보입니다.
 - KNDisplayType.KNDisplayType_DRIVE
-<img src="/images/changeDisplayType_01.png" width="60%" height="60%"/>
+<br/><img src="../images/changeDisplayType_01.png" width="25%" height="25%"/>
 - KNDisplayType.KNDisplayType_SEARCH
-<img src="/images/changeDisplayType_02.png" width="60%" height="60%"/>
+<br/><img src="../images/changeDisplayType_02.png" width="25%" height="25%"/>
 ---
 
 
@@ -53,8 +53,8 @@ _naviView.mapViewWillMoveToMap()
 ```
 
 - 가이드 중 화면을 움직였을때 모습을 보여줍니다.(경로안내/안전운행)
-<img src="/images/mapViewWillMoveToMap_01.png" width="60%" height="60%"/>
-<img src="/images/mapViewWillMoveToMap_02.png" width="60%" height="60%"/>
+<br/><img src="../images/mapViewWillMoveToMap_01.png" width="25%" height="25%"/>
+<img src="../images/mapViewWillMoveToMap_02.png" width="25%" height="25%"/>
 ---
 
 
@@ -70,7 +70,7 @@ _naviView.mapViewDidSingleTap()
 
 - 화면을 한번 터치했을때 모습을 보여줍니다.
 - 가이드 중 에만 동작하며 하단 메뉴바 터치와 같은 기능을 합니다.(경로안내)
-<img src="/images/mapViewDidSingleTap_01.png" width="60%" height="60%"/>
+<br/><img src="../images/mapViewDidSingleTap_01.png" width="25%" height="25%"/>
 ---
 
 
@@ -86,7 +86,7 @@ _naviView.mapViewDidDoubleTap()
 
 - 화면을 빠르게 두번 터치했을때 모습을 보여줍니다.
 - 가이드 중 에만 동작하며 '전체 경로보기' 기능을 합니다.(경로안내)
-<img src="/images/mapViewDidDoubleTap_01.png" width="60%" height="60%"/>
+<br/><img src="../images/mapViewDidDoubleTap_01.png" width="25%" height="25%"/>
 ---
 
 
@@ -131,8 +131,8 @@ _naviView.mapViewChangeRoute(_route)
 - 설정된 _route로 경로를 표기해줍니다.
 - 경로가 표기되기 위해서는 가이드에 대안경로가 있어야 됩니다. 대안경로가 없다면 동작하지 않습니다.
 - 대안경로가 있다는 가정하에 호출하면 대안경로와 기존경로를 번갈아가며 노출합니다.
-<img src="/images/mapViewChangeRoute_01.png" width="60%" height="60%"/>
-<img src="/images/mapViewChangeRoute_02.png" width="60%" height="60%"/>
+<br/><img src="../images/mapViewChangeRoute_01.png" width="25%" height="25%"/>
+<img src="../images/mapViewChangeRoute_02.png" width="25%" height="25%"/>
 ---
 
 
@@ -148,7 +148,7 @@ _naviView.mapViewViaPointTouched(_goal!!)
 
 - 특정 POI에 대한 패널이 노출이 됩니다.
 - 다만 해당기능이 다른 작업을 하는 것은 확인하지 못했습니다.
-<img src="/images/mapViewViaPointTouched_01.png" width="60%" height="60%"/>
+<br/><img src="../images/mapViewViaPointTouched_01.png" width="25%" height="25%"/>
 ---
 
 
@@ -213,24 +213,24 @@ _naviView.highwayModeBgViewReqChangeViewMode(KNNaviViewState.SafetyTouch)
 
 - MapView의 배경을 KNNaviViewState에 따라 새로 그려줍니다. 루트경로는 새로 그려주지 않습니다.
 - KNNaviViewState.NONE (표기없음)
-<img src="/images/KNNaviViewState.NONE_01.png" width="60%" height="60%"/>
-<img src="/images/KNNaviViewState.NONE_02.png" width="60%" height="60%"/>
+<br/><img src="../images/KNNaviViewState.NONE_01.png" width="25%" height="25%"/>
+<img src="../images/KNNaviViewState.NONE_02.png" width="25%" height="25%"/>
 - KNNaviViewState.DriveNormal (경로주행)
-<img src="/images/KNNaviViewState.DriveNormal_01.png" width="60%" height="60%"/>
-<img src="/images/KNNaviViewState.DriveNormal_02.png" width="60%" height="60%"/>
+<br/><img src="../images/KNNaviViewState.DriveNormal_01.png" width="25%" height="25%"/>
+<img src="../images/KNNaviViewState.DriveNormal_02.png" width="25%" height="25%"/>
 - KNNaviViewState.DriveTouch (경로주행 중 터치)
-<img src="/images/KNNaviViewState.DriveTouch_01.png" width="60%" height="60%"/>
-<img src="/images/KNNaviViewState.DriveTouch_02.png" width="60%" height="60%"/>
+<br/><img src="../images/KNNaviViewState.DriveTouch_01.png" width="25%" height="25%"/>
+<img src="../images/KNNaviViewState.DriveTouch_02.png" width="25%" height="25%"/>
 - KNNaviViewState.DriveFullRoute (전체경로)
-<img src="/images/KNNaviViewState.DriveFullRoute_01.png" width="60%" height="60%"/>
+<br/><img src="../images/KNNaviViewState.DriveFullRoute_01.png" width="25%" height="25%"/>
 - KNNaviViewState.DriveSection (경로목록)
-<img src="/images/KNNaviViewState.DriveSection_01.png" width="60%" height="60%"/>
+<br/><img src="../images/KNNaviViewState.DriveSection_01.png" width="25%" height="25%"/>
 - KNNaviViewState.DriveHighwayMode (고속도로주행?)
-<img src="/images/KNNaviViewState.DriveHighwayMode_01.png" width="60%" height="60%"/>
+<br/><img src="../images/KNNaviViewState.DriveHighwayMode_01.png" width="25%" height="25%"/>
 - KNNaviViewState.SafetyNormal (안전운행)
-<img src="/images/KNNaviViewState.SafetyNormal_01.png" width="60%" height="60%"/>
+<br/><img src="../images/KNNaviViewState.SafetyNormal_01.png" width="25%" height="25%"/>
 - KNNaviViewState.SafetyTouch (안전운행 중 터치)
-<img src="/images/KNNaviViewState.SafetyTouch_01.png" width="60%" height="60%"/>
+<br/><img src="../images/KNNaviViewState.SafetyTouch_01.png" width="25%" height="25%"/>
 ---
 
 
@@ -247,8 +247,8 @@ _naviView.KNComponentRouteInfoViewChangedRoute(true)
 
 - 대안 경로가 있을때만 동작. 없으면 Error. false면 기존경로 true면 대안경로를 선택합니다.
 - 경로표기와 상단 안내는 바꾸어주지만 실제 가이드 안내 내용변화는 없습니다.
-<img src="/images/KNComponentRouteInfoViewChangedRoute_01.png" width="60%" height="60%"/>
-<img src="/images/KNComponentRouteInfoViewChangedRoute_02.png" width="60%" height="60%"/>
+<br/><img src="../images/KNComponentRouteInfoViewChangedRoute_01.png" width="25%" height="25%"/>
+<img src="../images/KNComponentRouteInfoViewChangedRoute_02.png" width="25%" height="25%"/>
 ---
 
 
@@ -265,7 +265,7 @@ _naviView.KNComponentRouteInfoViewRouteSelect(_routeList!!, true)
 - **NaviView.initWithGuidance** 설정된 경로와 **Trip.routeWithPriority** 로 설정된 경로가 다르다는 걸 보여주는 항목입니다.
 - KNComponentRouteInfoViewRouteSelect는 Trip.routeWithPriority으로 생성된 routeList 사용합니다.
 - Boolean값이 **true**면 축소된 화면에서, **false**면 경로 전체가 표현된 화면에서 경로를 보여줍니다.
-<img src="/images/KNComponentRouteInfoViewRouteSelect_01.png" width="60%" height="60%"/>
+<br/><img src="../images/KNComponentRouteInfoViewRouteSelect_01.png" width="25%" height="25%"/>
 ---
 
 
@@ -294,7 +294,7 @@ _naviView.KNComponentRouteInfoViewShowSectionInfo(_routeList!!)
 ```
 
 - 경로(route)의 상세 목차를 보여줍니다.
-<img src="/images/KNComponentRouteInfoViewShowSectionInfo_01.png" width="60%" height="60%"/>
+<br/><img src="../images/KNComponentRouteInfoViewShowSectionInfo_01.png" width="25%" height="25%"/>
 ---
 
 
@@ -551,7 +551,7 @@ _naviView.bottomViewOnMenu()
 ```
 
 - 가이드 중 하단 메뉴의 "메뉴클릭" 기능
-<img src="/images/bottomViewOnMenu_01.png" width="60%" height="60%"/>
+<br/><img src="../images/bottomViewOnMenu_01.png" width="25%" height="25%"/>
 ---
 
 
@@ -566,7 +566,7 @@ _naviView.bottomMenuViewFullRoute()
 ```
 
 - 가이드 중 하단 메뉴의 "전체경로" 기능
-<img src="/images/bottomMenuViewFullRoute_01.png" width="60%" height="60%"/>
+<br/><img src="../images/bottomMenuViewFullRoute_01.png" width="25%" height="25%"/>
 ---
 
 
@@ -581,7 +581,7 @@ _naviView.bottomMenuViewAnotherRoute()
 ```
 
 - 가이드 중 하단 메뉴의 "다른경로" 기능
-<img src="/images/bottomMenuViewAnotherRoute_01.png" width="60%" height="60%"/>
+<br/><img src="../images/bottomMenuViewAnotherRoute_01.png" width="25%" height="25%"/>
 ---
 
 
@@ -639,7 +639,7 @@ _naviView.bottomMenuViewDriveSetting()
 ```
 
 - 가이드 중 하단 메뉴의 "주행설정" 기능
-<img src="/images/bottomMenuViewDriveSetting_01.png" width="60%" height="60%"/>
+<br/><img src="../images/bottomMenuViewDriveSetting_01.png" width="25%" height="25%"/>
 ---
 
 
@@ -699,7 +699,7 @@ _naviView.accidentButtonViewClick()
 ---
 
 
-##guideStateDelegate 관련 function
+## guideStateDelegate 관련 function
 상기 function들은 guideState를 받기 위한 함수들입니다. Override되어있으며 데이터가 들어올때 해당 정보를 처리해줍니다.(Reciever)
 guideStateDelegate는 주행중 안내 상태가 변경될 때 호출됩니다.
 - guidanceGuideStarted
@@ -846,7 +846,7 @@ override fun guidanceDidUpdateRoutes(
 ---
 
 
-##locationGuideDelegate 관련 function
+## locationGuideDelegate 관련 function
 상기 function들은 locationGuide를 받기 위한 함수들입니다. Override되어있으며 데이터가 들어올때 해당 정보를 처리해줍니다.(Reciever)
 locationGuideDelegate 위치를 나타냄. 주행중 안내 위치가 변경될 때 호출. 현재는 매번 GPS신호를 수신할 때마다 호출.
 - guidanceDidUpdateLocation
@@ -870,7 +870,7 @@ override fun guidanceDidUpdateLocation(
 ---
 
 
-##routeGuideDelegate 관련 function
+## routeGuideDelegate 관련 function
 상기 function들은 routeGuide를 받기 위한 함수들입니다. Override되어있으며 데이터가 들어올때 해당 정보를 처리해줍니다.(Reciever)
 routeGuideDelegate는 경로를 안내하는 델리게이트. 주행중 경로 안내 정보가 변경될 때 호출
 - guidanceDidUpdateRouteGuide
@@ -891,7 +891,7 @@ override fun guidanceDidUpdateRouteGuide(aGuidance: KNGuidance, aRouteGuide: KNG
 ---
 
 
-##safetyGuideDelegate 관련 function
+## safetyGuideDelegate 관련 function
 상기 function들은 safetyGuide를 받기 위한 함수들입니다. Override되어있으며 데이터가 들어올때 해당 정보를 처리해줍니다.(Reciever)
 safetyGuideDelegate는 안전운행 델리게이트. 안전운행 정보가 변경될 때 호출.
 - guidanceDidUpdateSafetyGuide
@@ -935,7 +935,7 @@ override fun guidanceDidUpdateAroundSafeties(
 ---
 
 
-##voiceGuideDelegate 관련 function
+## voiceGuideDelegate 관련 function
 상기 function들은 voiceGuide 받기 위한 함수들입니다. Override되어있으며 데이터가 들어올때 해당 정보를 처리해줍니다.(Reciever)
 voiceGuideDelegate는 음성안내 델리게이트. 음성안내 시작 및 종료와 관련된 정보 요청 및 전달.
 - shouldPlayVoiceGuide
@@ -1017,7 +1017,7 @@ override fun didFinishPlayVoiceGuide(aGuidance: KNGuidance, aVoiceGuide: KNGuide
 ---
 
 
-##citsGuideDelegate 관련 function
+## citsGuideDelegate 관련 function
 상기 function들은 citsGuide를 받기 위한 함수들입니다. Override되어있으며 데이터가 들어올때 해당 정보를 처리해줍니다.(Reciever)
 citsGuideDelegate는 C-ITS(협력지능형교통체계) 정보가 변경되면 호출
 - didUpdateCitsGuide
